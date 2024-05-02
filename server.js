@@ -6,10 +6,10 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 const port = 3001;
 
-const db = new sqlite3.Database(':memory:');
+const db = new sqlite3.Database('my_db.db');
 
 db.serialize(() => {
-  db.run('CREATE TABLE batches (id INTEGER PRIMARY KEY AUTOINCREMENT, batch TEXT UNIQUE, start_date TEXT)');
+  db.run('CREATE TABLE IF NOT EXISTS batches (id INTEGER PRIMARY KEY AUTOINCREMENT, batch TEXT UNIQUE, start_date TEXT)');
 });
 
 app.use(cors());
