@@ -1,7 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import sqlite3 from 'sqlite3';
+
+import readRoutineDataFromExcelByBatch from './readFile.js'
 
 const app = express();
 const port = 3001;
@@ -46,6 +48,13 @@ app.get('/batches', (req, res) => {
 
     res.status(200).json(rows);
   });
+});
+
+
+console.log(readRoutineDataFromExcelByBatch())
+app.get('/routine-data', (req, res) => {
+  const data = readRoutineDataFromExcelByBatch();
+  res.json(data);
 });
 
 app.listen(port, () => {
