@@ -8,7 +8,7 @@ import readRoutineDataFromExcelByBatch from './readFile.js'
 const app = express();
 const port = 3001;
 
-const db = new sqlite3.Database('my_db.db');
+const db = new sqlite3.Database('test_1.db');
 
 db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS batches (id INTEGER PRIMARY KEY AUTOINCREMENT, batch TEXT UNIQUE, start_date TEXT)');
@@ -29,6 +29,7 @@ db.serialize(() => {
       console.log('Data of off_days:', data);
     }
   });
+  
 });
 
 app.use(cors());
