@@ -47,6 +47,7 @@ app.post('/batches', (req, res) => {
 
     if (this.changes === 1) {
       const id = this.lastID || 'N/A';
+      console.log("Successful")
       res.status(201).json({ message: 'Batch saved or updated successfully.', id });
     } else {
       res.status(200).json({ message: 'Batch start date updated successfully.' });
@@ -63,7 +64,7 @@ app.get('/batches', (req, res) => {
       res.status(500).json({ error: 'Error fetching batches.' });
       return;
     }
-
+    console.log("Successful")
     res.status(200).json(rows);
   });
 });
@@ -99,6 +100,7 @@ app.post('/save-off-days', (req, res) => {
       res.status(500).send('Error saving off days');
       return;
     }
+    console.log("Successful")
     res.status(200).send('Off days saved successfully');
   });
 });
@@ -112,6 +114,7 @@ app.get('/get-off-days', (req, res) => {
       res.status(500).send('Error fetching off days');
       return;
     }
+    console.log("Successful")
     res.status(200).json(rows.map(row => row.date));
   });
 });
@@ -124,6 +127,7 @@ app.delete('/reset-off-days', (req, res) => {
       res.status(500).send('Error resetting off days');
       return;
     }
+    console.log("Successful")
     res.status(200).send('Off days reset successfully');
   });
 });
